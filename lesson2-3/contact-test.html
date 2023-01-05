@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/06ddf5027f.js" crossorigin="anonymous"></script>    
+    <title>Contact Page</title>
+    <style>
+        body, h1 {
+            margin-top: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background-color: lightblue;
+            padding: 20px 40px;
+        }
+
+        .checked-input:checked + label {
+            color: brown;
+        }
+
+        .input-other {
+            display: none;
+        }
+
+        .checked-input:checked ~ .input-other {
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Trac Khang</h1>
+        <img src="avatar.png" width="100px" height="100px" alt="">
+        <hr>
+        <p>Leave me a message</p>
+
+        <form action="">
+            <label for="">Your email</label><br>
+            <input type="text"><br><br>
+
+            <label for="country">Where are you from</label>
+            <select id="country">
+                <option value="">Ha Noi</option>
+                <option value="">Ho Chi Minh</option>
+            </select>
+
+            <p>Please select your sex</p>
+            <input type="radio" name="sex" class="checked-input">
+            <label for="male">Male</label><br>
+            <input type="radio" name="sex" class="checked-input">
+            <label for="">Female</label><br>
+
+            <p>Who are you ?</p>
+            <input type="checkbox" class="checked-input">
+            <label for="">Employer</label>
+            <br>
+            <input type="checkbox" class="checked-input">
+            <label for="">Freelancer</label><br>
+            <input type="checkbox" id="other" class="checked-input">
+            <label for="other">Other</label>
+            <input class="input-other" type="text">
+            <input class="input-other" type="text">
+
+            <br>
+
+            <textarea id="" cols="30" rows="10"></textarea><br>
+            <button>Submit</button>
+        </form>
+    </div>
+</body>
+</html>
