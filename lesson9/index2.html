@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #error1, #error2 {
+            display: none;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form id="form" class="container">
+            <div>
+                <label for="number1">Nhap so thu nhat</label>
+                <input type="number" id="number1" onkeypress="hideError()">
+                <p id="error1">Ban nhap thieu so thu nhat</p>
+                <br>
+                <label for="number2">Nhap so thu hai</label>
+                <input type="number" id="number2" name="number2">
+                <p id="error2">Ban nhap thieu so thu hai</p>
+                <br>
+                <label for="result">Ket qua</label>
+                <input type="number" id="result" disabled>
+            </div>
+            <div>
+                <label>Cong</label>
+                <input type="radio" id="plus" name="operator" checked>
+                <label>Tru</label>
+                <input type="radio" id="minus" name="operator">
+                <br>
+    
+                <label>Nhan</label>
+                <input type="radio" id="multiply" name="operator">
+                <label>Chia</label>
+                <input type="radio" id="divide" name="operator">
+                <br>
+                <button type="submit">Tinh</button>
+            </div>
+        </form>
+    </div>
+
+
+    <script>
+        const hideError = () => {
+            const error1 = document.getElementById('error1')
+            error1.style.display = 'none'
+        }
+    
+        const form = document.getElementById('form')
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault()
+
+            const number1 = event.target.number1.value
+            const number2 = event.target.number2.value
+            const error1 = document.getElementById('error1')
+            const error2 = document.getElementById('error2')
+
+            let check = true
+
+            if (number1 === '') {
+                error1.style.display = 'block'
+                check = false
+            }
+            else {
+                error1.style.display = 'none'
+            }
+
+            if (number2 === '') {
+                error2.style.display = 'block'
+                check = false
+            }
+            else {
+                error2.style.display = 'none'
+            }
+
+            if (!check) {
+                return
+            }
+
+            const plus = event.target.plus.checked
+            const minus = event.target.minus.checked
+            const multiply = event.target.multiply.checked
+
+            let result = 0
+
+            if (plus) {
+                result = Number(number1) + Number(number2)
+            }
+            else if (minus) {
+                result = Number(number1) - Number(number2)
+            }
+            else if (multiply) {
+                result = Number(number1) * Number(number2)
+            }
+            else {
+                result = Number(number1) / Number(number2)
+            }
+
+            event.target.result.value = result
+
+        })
+
+       
+    </script>
+</body>
+</html>
