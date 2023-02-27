@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Detail</p>
+    <div id="detail"></div>
+
+    <script src="data.js"></script>
+    <script>
+        let book = null
+
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const bookId = urlParams.get('id')
+
+        // for (let i = 0; i < books.length; i++) {
+        //     if (books[i].id == bookId) {
+        //         book = books[i]
+        //         break
+        //     }
+        // }
+
+        book = books.find(book => book.id == bookId)
+        
+        const name = document.createElement('p')
+        const content = document.createElement('p')
+
+        name.innerText = book.name
+        content.innerText = book.content
+
+        const detail = document.getElementById('detail')
+        detail.appendChild(name)
+        detail.appendChild(content)
+
+
+    </script>
+</body>
+</html>

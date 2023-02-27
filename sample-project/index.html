@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="search">
+    <button onclick="search()">Search</button>
+
+    <div id="list">
+    </div>
+
+    <script src="data.js"></script>
+    <script>
+        const list = document.getElementById('list')
+
+        books.forEach(book => {
+            const textTemp = `
+                <a href="detail.html?id=${book.id}" target="_blank">
+                    <p>Name: ${book.name}</p>
+                    <p>Content: ${book.content}</p>
+                </a>
+                <br>
+            `
+
+            const child = document.createElement('div')
+            child.innerHTML = textTemp
+
+            list.appendChild(child)
+        })
+
+        const searchEl = document.getElementById('search')
+
+        const search = () => {
+            const searchData = searchEl.value
+
+            const result = books.find(
+                book => book.name.includes(searchData) || book.content.includes(searchData)
+            )
+            console.log(result);
+        }
+
+    </script>
+</body>
+</html>
