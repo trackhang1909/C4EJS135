@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        #info {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <form id="form">
@@ -17,29 +22,48 @@
         <button type="submit">Dang nhap</button>
         <a href="signup.html">Dang ky</a>
     </form>
+    <div id="info">
+        <p>Ho va ten: ABC</p>
+    </div>
 
     <script>
-        const form = document.getElementById('form')
+        const check = Boolean(sessionStorage.getItem('isSignin'))
+        if (check) {
+            const element = document.getElementById("form");
+            element.remove();
 
-        form.addEventListener('submit', (event) => {
-            event.preventDefault()
+            const info = document.getElementById("info");
+            info.style.display = 'block'
+        }
+        else {
+            const form = document.getElementById('form')
 
-            const user = JSON.parse(localStorage.getItem('user'))
+            form.addEventListener('submit', (event) => {
+                event.preventDefault()
 
-            if (
-                event.target.email.value == user.email
-                && event.target.password.value == user.password
-            ) {
-                sessionStorage.setItem('isSignin', true)
-                alert('Dang nhap thanh cong')
-                window.location.href = 'index.html'
-            }
-            else {
-                alert('Dang nhap that bai')
-            }
+                const userArray = JSON.parse(localStorage.getItem('userArray'))
 
-            sessionStorage.removeItem('user')
-        })
+                const checkExist = userArray.find(
+                    item => (event.target.email.value == item.email
+                    && event.target.password.value == item.password)
+                )
+
+                if (checkExist) {
+                    sessionStorage.setItem('isSignin', true)
+                    alert('Dang nhap thanh cong')
+                    // window.location.href = 'index.html'
+
+                    const element = document.getElementById("form");
+                    element.remove();
+
+                    const info = document.getElementById("info");
+                    info.style.display = 'block'
+                }
+                else {
+                    alert('Dang nhap that bai')
+                }
+            })
+        }
 
     </script>
 </body>
