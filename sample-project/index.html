@@ -13,6 +13,21 @@
     <div id="list">
     </div>
 
+    <script>
+        const myPromise = () => Promise.resolve('Resolved')
+        function first() {
+            myPromise().then((res) => console.log(res))
+            console.log('second');
+        }
+        async function second() {
+            await myPromise().then(res => console.log(res))
+            console.log('second');
+        }
+
+        first()
+        second()
+    </script>
+
     <script src="data.js"></script>
     <script>
         const list = document.getElementById('list')
